@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Posts</title>
+</head>
+<body>
+    <h1>Blog Posts</h1>
+    <a href="{% url 'blog:add_blog' %}">Add New Blog Post</a>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <strong>{{ post.title }}</strong> by {{ post.author }}<br>
+                {{ post.content|truncatewords:20 }}<br>
+                <em>Created at: {{ post.created_at }}</em>
+            </li>
+        {% empty %}
+            <p>No blog posts available.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
