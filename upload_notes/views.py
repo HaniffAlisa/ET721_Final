@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import NoteImage
+from .forms import NoteImageForm
 
 
 # Create your views here.
@@ -12,9 +13,10 @@ def notes_list(request):
 
 def upload_note(request):
     if request.method == "POST":
-        title = request.POST.get('title')
-        image = request.FILES.get('image')
-        subject = request.POST.get('subject')
-        NoteImage.objects.create(title=title, image=image, subject=subject)
-        return redirect('upload_notes:notes_list')
-    return render(request, 'upload_notes/upload_note.html')
+        form = NoteImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('upload_notes:notes_list')
+    else:
+        form = NoteImageForm()
+    return render(request, 'upload_notes/upload_note.html', {'form': form})
