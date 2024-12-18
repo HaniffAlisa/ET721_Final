@@ -7,6 +7,8 @@ class BlogPost(models.Model):
     author = models.CharField(max_length=100, default="Anonymous")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    category = models.CharField(max_length=100, blank=True, null=True)
+    tags = models.CharField(max_length=200, blank=True, null=True)  # Tags for navigation
 
     def __str__(self):
         return self.title

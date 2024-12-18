@@ -1,18 +1,11 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome to the Student Learning Management App</h1>
-    <p>Select an app to get started:</p>
-    <ul>
-        <li><a href="/to_do_list/">To-Do List</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/upload_notes/">Upload Notes</a></li>
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}   <!-- Makes index.html inherit the layout and styles defined in base.html.-->
+
+{% block content %}
+<h1>Welcome to the Student Learning Management App</h1>
+<p>Select an app to get started:</p>
+<ul>
+    <li><a href="/to_do_list/">To-Do List</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/upload_notes/">Upload Notes</a></li>
+</ul>
+{% endblock %}

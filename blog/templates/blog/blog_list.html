@@ -1,23 +1,19 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog Posts</title>
-</head>
-<body>
-    <h1>Blog Posts</h1>
-    <a href="{% url 'blog:add_blog' %}">Add New Blog Post</a>
-    <ul>
-        {% for post in posts %}
-            <li>
-                <strong>{{ post.title }}</strong> by {{ post.author }}<br>
-                {{ post.content|truncatewords:20 }}<br>
-                <em>Created at: {{ post.created_at }}</em>
-            </li>
-        {% empty %}
-            <p>No blog posts available.</p>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}   <!-- Inherit structure and styles from base.html.-->
+
+{% block content %}
+<h2>Blog Posts</h2>
+<ul>
+    {% for post in posts %}
+        <li>
+            <strong>{{ post.title }}</strong> by {{ post.author }}
+            <p>{{ post.content|truncatewords:20 }}</p>
+            <a href="{% url 'blog:blog_detail' post.id %}">View</a>
+            <a href="{% url 'blog:edit_blog' post.id %}">Edit</a>
+            <a href="{% url 'blog:delete_blog' post.id %}">Delete</a>
+        </li>
+    {% empty %}
+        <p>No blog posts available. <a href="{% url 'blog:add_blog' %}">Add one now!</a></p>
+    {% endfor %}
+</ul>
+<a href="{% url 'blog:add_blog' %}">Add New Blog</a>
+{% endblock %}

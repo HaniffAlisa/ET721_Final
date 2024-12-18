@@ -2,13 +2,21 @@
 
 {% block content %}
 <h2>To-Do List</h2>
+<a href="{% url 'to_do_list:create_task' %}">Create New Task</a>
 <ul>
     {% for task in tasks %}
-        <li>{{ task.title }} - {{ task.category }}</li>
+        <li>
+            {{ task.title }} - {{ task.category }}
+            {% if task.completed %}
+                (Completed)
+            {% else %}
+                <a href="{% url 'to_do_list:mark_task_complete' task.id %}">Mark as Complete</a>
+            {% endif %}
+            <a href="{% url 'to_do_list:update_task' task.id %}">Edit</a>
+            <a href="{% url 'to_do_list:delete_task' task.id %}">Delete</a>
+        </li>
     {% empty %}
-        <p>No tasks available.</p>
+        <p>No tasks available. <a href="{% url 'to_do_list:create_task' %}">Add one now!</a></p>
     {% endfor %}
 </ul>
 {% endblock %}
-
-
