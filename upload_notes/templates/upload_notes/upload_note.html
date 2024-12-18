@@ -1,17 +1,11 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Upload Note</title>
-</head>
-<body>
-    <h1>Upload a New Note</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Upload a New Note</h2>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Upload Note</button>
 </form>
 <a href="{% url 'upload_notes:notes_list' %}">Back to Notes List</a>
-</body>
-</html>
+{% endblock %}

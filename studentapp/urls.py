@@ -17,6 +17,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings   #to handle the image files
+from django.conf.urls.static import static   #to handle the image files
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,5 +26,4 @@ urlpatterns = [
     path('to_do_list/', include('to_do_list.urls')),
     path('blog/', include('blog.urls')),
     path('upload_notes/', include('upload_notes.urls')),
-]
-
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

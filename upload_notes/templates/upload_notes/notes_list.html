@@ -1,23 +1,16 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uploaded Notes</title>
-</head>
-<body>
-    <h1>Uploaded Notes</h1>
-    <a href="{% url 'upload_notes:upload_note' %}">Upload a New Note</a>
-    <ul>
-        {% for note in notes %}
-            <li>
-                {{ note.title }} (Subject: {{ note.subject }})<br>
-                <img src="{{ note.image.url }}" alt="{{ note.title }}" width="200">
-            </li>
-        {% empty %}
-            <p>No notes have been uploaded yet.</p>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Uploaded Notes</h2>
+<a href="{% url 'upload_notes:upload_note' %}">Upload a New Note</a>
+<ul>
+    {% for note in notes %}
+        <li>
+            <strong>{{ note.title }}</strong> (Subject: {{ note.subject }})<br>
+            <img src="{{ note.image.url }}" alt="{{ note.title }}" width="300">
+        </li>
+    {% empty %}
+        <p>No notes uploaded yet.</p>
+    {% endfor %}
+</ul>
+{% endblock %}
