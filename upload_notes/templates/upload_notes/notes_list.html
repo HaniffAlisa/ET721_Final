@@ -7,7 +7,8 @@
     {% for note in notes %}
         <li>
             <strong>{{ note.title }}</strong> (Subject: {{ note.subject }})<br>
-            <img src="{{ note.image.url }}" alt="{{ note.title }}" width="300">
+            <img src="{{ note.image.url }}" alt="{{ note.title }}" width="300"><br>
+            <a href="{% url 'upload_notes:delete_note' note.id %}" class="delete-link">Delete</a>
         </li>
     {% empty %}
         <p>No notes uploaded yet.</p>

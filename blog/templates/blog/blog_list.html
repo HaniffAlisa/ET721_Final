@@ -9,7 +9,8 @@
             <p>{{ post.content|truncatewords:20 }}</p>
             <a href="{% url 'blog:blog_detail' post.id %}">View</a>
             <a href="{% url 'blog:edit_blog' post.id %}">Edit</a>
-            <a href="{% url 'blog:delete_blog' post.id %}">Delete</a>
+            <a href="{% url 'blog:delete_blog' post.id %}" class="delete-link">Delete</a>
+
         </li>
     {% empty %}
         <p>No blog posts available. <a href="{% url 'blog:add_blog' %}">Add one now!</a></p>

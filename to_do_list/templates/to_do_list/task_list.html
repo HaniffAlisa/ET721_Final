@@ -13,7 +13,8 @@
                 <a href="{% url 'to_do_list:mark_task_complete' task.id %}">Mark as Complete</a>
             {% endif %}
             <a href="{% url 'to_do_list:update_task' task.id %}">Edit</a>
-            <a href="{% url 'to_do_list:delete_task' task.id %}">Delete</a>
+            <a href="{% url 'to_do_list:delete_task' task.id %}" class="delete-link">Delete</a>
+
         </li>
     {% empty %}
         <p>No tasks available. <a href="{% url 'to_do_list:create_task' %}">Add one now!</a></p>
